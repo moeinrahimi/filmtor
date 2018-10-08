@@ -5,5 +5,8 @@ module.exports = function(sequelize, DataTypes) {
       path: { type: DataTypes.STRING },
       plot: { type: DataTypes.STRING },
       rank: { type: DataTypes.STRING },
+      rated: { type: DataTypes.STRING },
+      year: { type: DataTypes.STRING },
+
     })
   }

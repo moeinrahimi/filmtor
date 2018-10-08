@@ -4,6 +4,7 @@
   "private": false,
   "dependencies": {
     "body-parser": "^1.18.3",
+    "clappr": "^0.2.98",
     "express": "^4.16.3",
     "imdb-api": "^4.0.2",
     "mysql2": "^1.6.1",

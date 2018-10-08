@@ -4,11 +4,15 @@ const bodyParser = require('body-parser')
 const db = require('./models')
 const config = require('./config.json')
 const settingRouter = require('./controllers/SettingController')
+const movieRouter = require('./controllers/MovieController')
+const streamRouter = require('./controllers/StreamController')
 let app = express()
 app.server = http.createServer(app)
 
 app.use(bodyParser.json())
 app.use('/api/v1/settings',settingRouter)
+app.use('/api/v1/movies',movieRouter)
+app.use('/api/v1/stream',streamRouter)
 db.sequelize.sync(
   // {force: true}
 ).then(function () {
