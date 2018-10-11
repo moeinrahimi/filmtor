@@ -8,15 +8,19 @@ const movieRouter = require('./controllers/MovieController')
 const streamRouter = require('./controllers/StreamController')
 let app = express()
 app.server = http.createServer(app)
-
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use(bodyParser.json())
-app.use('/api/v1/settings',settingRouter)
-app.use('/api/v1/movies',movieRouter)
-app.use('/api/v1/stream',streamRouter)
+app.use('/api/v1/settings', settingRouter)
+app.use('/api/v1/movies', movieRouter)
+app.use('/api/v1/stream', streamRouter)
 db.sequelize.sync(
-  // {force: true}
+  // { force: true }
 ).then(function () {
-}).catch(err=>{
+}).catch(err => {
   console.log(`Sequelize issue:\nerr name :${err.name}\nerr message :  ${err.message}`)
 });
 

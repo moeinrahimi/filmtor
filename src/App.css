@@ -1,28 +1,21 @@
-.App {
-  text-align: center;
+.show-cover { 
+  width : 280px;
+  height: 150px; /* could this blcok removed ? */
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
+.show-image  { 
+  width : 280px;
   height: 150px;
-  padding: 20px;
-  color: white;
-}
 
-.App-title {
-  font-size: 1.5em;
 }
-
-.App-intro {
-  font-size: large;
+.show-container { 
+  margin-top: 4rem;
 }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.full-page-player{
+  position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+}
+.hidden{
+  visibility: hidden;
 }

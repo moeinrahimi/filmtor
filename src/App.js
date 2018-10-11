@@ -1,38 +1,60 @@
 import React, { Component } from 'react';
 import './App.css';
-// import ClapprPlayer from './clappr.js';
-import Clappr from 'clappr';
-
+import ClapprPlayer from './clappr.js';
+import Navbar from './components/navbar';
+import axios from 'axios'
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
-      player : ''
+      movies: [],
+      url: '',
+      hide: true
     }
   }
   componentDidMount = () => {
-    this.player = new Clappr.Player({
-      parent: this.refs.player,
-      autoPlay : true,
-      source: 'http://techslides.com/demos/sample-videos/small.mp4',
-      width: '640px',
-      height: '360px',
-      hlsjsConfig: {
-        enableWorker: true
-      }
-    });
-    this.player.play()
-    console.log(this.player,this.refs.player)
+    axios.get('http://localhost:8080/api/v1/movies')
+      .then(data => {
+        this.setState({
+          movies: data.data.movies
+        })
+      })
   }
-  
+  playMovie = (id) => {
+
+    let url = `http://localhost:8080/api/v1/stream/${id}`
+    console.log('d', url)
+    this.setState({ url: url, hide: !this.state.hide })
+  }
+
   render() {
+    let { movies } = this.state
     return (
       <div className="App">
- 
-        
-        <div ref="player" id="player"></div>
+        <ClapprPlayer source='http://localhost:8080/api/v1/stream/1' hide={this.state.hide} />
+        <Navbar />
+        <div className="container-fluid">
 
-      </div>
+
+          <div className="row">
+            <div className="col">
+
+              <div className="show-container">
+                {movies.map(movie => {
+                  return (
+
+                    <div key={movie.id} className="show-cover" onClick={e => this.playMovie(movie.id)}>
+                      <img src={movie.poster} className="show-image" />
+                    </div>
+                  )
+                })}
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div >
     );
   }
 }
