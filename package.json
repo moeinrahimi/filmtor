@@ -6,7 +6,7 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "clappr": "^0.2.98",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "imdb-api": "^4.0.2",
     "mysql2": "^1.6.1",
     "react": "^16.5.2",
